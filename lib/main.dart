@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jspaste_mobile/components/button.dart';
 
 void main() {
   runApp(const MainApp());
@@ -38,9 +39,7 @@ class JSPasteBottomBar extends StatelessWidget {
         children: [
           Text('[Placeholder]'),
           Spacer(),
-          BottomBarButton(
-            icon: Icon(Icons.save),
-          ),
+          Button(icon: Icon(Icons.save)),
         ],
       ),
     );
