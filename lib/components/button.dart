@@ -62,7 +62,7 @@ class _BottomAppBarButtonState extends State<BottomAppBarButton>
       cursor: SystemMouseCursors.click,
       onEnter: (event) => _hoverController.forward(),
       onExit: (event) {
-        if (_hoverController.isCompleted) {
+        if (_hoverController.isCompleted || _hoverController.isAnimating) {
           _hoverController.reverse();
         }
 
@@ -81,18 +81,20 @@ class _BottomAppBarButtonState extends State<BottomAppBarButton>
         onTap: widget.onTap,
         child: AnimatedBuilder(
           animation: Listenable.merge([_backgroundColor, _clickController]),
-          builder: (context, child) => SizedBox(
-            height: widget.height,
-            child: AspectRatio(
-              aspectRatio: 1,
-              child: Container(
-                margin: const EdgeInsets.all(5),
-                decoration: BoxDecoration(
-                  color: _backgroundColor.value,
-                  borderRadius: BorderRadius.circular(widget.height / 5),
-                ),
-                child: Center(
-                  child: Icon(widget.icon, color: Colors.grey[850]),
+          builder: (context, child) => Container(
+            margin: const EdgeInsets.symmetric(vertical: 5),
+            child: SizedBox(
+              height: widget.height,
+              child: AspectRatio(
+                aspectRatio: 1,
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: _backgroundColor.value,
+                    borderRadius: BorderRadius.circular(widget.height / 5),
+                  ),
+                  child: Center(
+                    child: Icon(widget.icon, color: Colors.grey[850]),
+                  ),
                 ),
               ),
             ),
