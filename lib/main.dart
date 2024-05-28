@@ -12,9 +12,8 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-        useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.amber)
-      ),
+          useMaterial3: true,
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.amber)),
       home: const Scaffold(
         body: Center(
           child: Placeholder(),
@@ -32,14 +31,19 @@ class JSPasteBottomBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const BottomAppBar(
+    return BottomAppBar(
       height: 60,
-      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       child: Row(
         children: [
-          Text('[Placeholder]'),
-          Spacer(),
-          Button(icon: Icon(Icons.save)),
+          const Text('[Placeholder]'),
+          const Spacer(),
+          BottomAppBarButton(
+            icon: Icons.save,
+            onTap: () {
+              print("click");
+            },
+          ),
         ],
       ),
     );
@@ -72,7 +76,6 @@ class BottomBarButton extends StatelessWidget {
             padding: MaterialStateProperty.all(const EdgeInsets.all(0)),
             elevation: MaterialStateProperty.all(0),
             iconColor: MaterialStateProperty.all(Colors.amber),
-            
           ),
           onPressed: () {},
           child: Center(
