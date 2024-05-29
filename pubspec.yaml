@@ -7,14 +7,25 @@ environment:
   sdk: '>=3.2.6 <4.0.0'
 
 dependencies:
-  code_editor: ^2.1.0
   flutter:
     sdk: flutter
+  flutter_code_editor: ^0.3.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.0
+  flutter_launcher_icons: "^0.13.1"
 
 flutter:
   uses-material-design: true
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/icon/icon_rounded_bg_1024x1024.png"
+  min_sdk_version: 21
+  windows: # for debug purposes
+    generate: true
+    image_path: "assets/icon/icon_rounded_bg_1024x1024.png"
+    icon_size: 48
