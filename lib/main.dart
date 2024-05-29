@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jspaste_mobile/components/button.dart';
+import 'package:jspaste_mobile/constants/logo_icons.dart';
 
 void main() {
   runApp(const MainApp());
@@ -37,7 +38,7 @@ class JSPasteBottomBar extends StatelessWidget {
       child: Row(
         children: [
           BottomAppBarButton(
-            icon: Icons.abc /* placeholder for JSPaste logo */,
+            icon: LogoIcons.fullIcon,
             onTap: () {
               print("jspaste logo pressed");
             }

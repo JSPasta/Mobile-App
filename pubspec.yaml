@@ -19,13 +19,19 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  fonts:
+    - family:  LogoIcons
+      fonts:
+       - asset: assets/fonts/LogoIcons.ttf
 
 flutter_launcher_icons:
   android: true
   ios: true
-  image_path: "assets/icon/icon_rounded_bg_1024x1024.png"
+  image_path: "assets/icon/rounded_bg_1024x1024.png"
   min_sdk_version: 21
   windows: # for debug purposes
     generate: true
-    image_path: "assets/icon/icon_rounded_bg_1024x1024.png"
+    image_path: "assets/icon/rounded_bg_1024x1024.png"
     icon_size: 48
+
+
