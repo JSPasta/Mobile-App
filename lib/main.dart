@@ -36,52 +36,22 @@ class JSPasteBottomBar extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       child: Row(
         children: [
+          BottomAppBarButton(
+            icon: Icons.abc /* placeholder for JSPaste logo */,
+            onTap: () {
+              print("jspaste logo pressed");
+            }
+          ),
+            const SizedBox(width: 10),
           const Text('[Placeholder]'),
           const Spacer(),
           BottomAppBarButton(
             icon: Icons.save,
             onTap: () {
-              print("click");
+              print("save pressed");
             },
           ),
         ],
-      ),
-    );
-  }
-}
-
-class BottomBarButton extends StatelessWidget {
-  final Icon icon;
-  final double height;
-
-  const BottomBarButton({
-    super.key,
-    required this.icon,
-    this.height = 40,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: height,
-      child: AspectRatio(
-        aspectRatio: 1,
-        child: ElevatedButton(
-          style: ButtonStyle(
-            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-              RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10),
-              ),
-            ),
-            padding: MaterialStateProperty.all(const EdgeInsets.all(0)),
-            elevation: MaterialStateProperty.all(0),
-            iconColor: MaterialStateProperty.all(Colors.amber),
-          ),
-          onPressed: () {},
-          child: Center(
-            child: icon,
-          ),
-        ),
       ),
     );
   }
