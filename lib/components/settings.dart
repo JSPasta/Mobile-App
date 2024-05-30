@@ -9,8 +9,15 @@ class SettingsMenu extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: const Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text("Language"),
+          Text(
+            "Language",
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 20,
+            ),
+          ),
           SizedBox(height: 10),
           LanguageSelectorBox(),
         ],
@@ -18,4 +25,3 @@ class SettingsMenu extends StatelessWidget {
     );
   }
 }
-

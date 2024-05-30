@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:simple_icons/simple_icons.dart';
 
 class LanguageSelectorBox extends StatefulWidget {
   const LanguageSelectorBox({super.key});
@@ -75,7 +76,9 @@ class _LanguageSelectorBoxState extends State<LanguageSelectorBox>
         onTapDown: _onTapDown,
         onTapUp: _onTapUp,
         onTap: () {
-          throw UnimplementedError(); // TODO: Implement ontap to show dialog
+          Navigator.of(context).pop(); // close the bottom sheet
+
+          /* throw UnimplementedError(); // TODO: Implement ontap to show dialog */
         },
         child: AnimatedBuilder(
           animation: Listenable.merge([_backgroundColor, _clickController]),
@@ -87,7 +90,30 @@ class _LanguageSelectorBoxState extends State<LanguageSelectorBox>
                 borderRadius: BorderRadius.circular(10),
               ),
               child: const Center(
-                child: SizedBox(),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(SimpleIcons.rust, color: Colors.black),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Text(
+                      'Rust (detected)',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Icon(
+                      Icons.arrow_drop_down,
+                      color: Colors.black,
+                    ),
+                  ],
+                ),
               ),
             ),
           ),

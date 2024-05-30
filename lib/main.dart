@@ -54,6 +54,11 @@ class JSPasteBottomBar extends StatelessWidget {
                 showModalBottomSheet(
                     context: context,
                     showDragHandle: true,
+                    // make the shapeborder a radius of 10
+                    shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(10),
+                            topRight: Radius.circular(10))),
                     builder: (context) {
                       return const SettingsMenu();
                     });
