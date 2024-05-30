@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jspaste_mobile/components/button.dart';
 import 'package:simple_icons/simple_icons.dart';
 
 class LanguageSelectorBox extends StatefulWidget {
@@ -8,117 +9,46 @@ class LanguageSelectorBox extends StatefulWidget {
   State<LanguageSelectorBox> createState() => _LanguageSelectorBoxState();
 }
 
-class _LanguageSelectorBoxState extends State<LanguageSelectorBox>
-    with TickerProviderStateMixin {
-  late AnimationController _hoverController;
-  late AnimationController _clickController;
-  late Animation<Color?> _backgroundColor;
-  final Color _defaultColor = Colors.white;
-  final Color _hoverColor = Colors.amber[200]!;
-  final Color _clickColor = Colors.amber;
-
-  @override
-  void initState() {
-    super.initState();
-    _hoverController = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 200),
-    );
-    _clickController = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 100),
-    );
-    _backgroundColor = ColorTween(begin: _defaultColor, end: _hoverColor)
-        .animate(_hoverController);
-  }
-
-  @override
-  void dispose() {
-    _hoverController.dispose();
-    _clickController.dispose();
-    super.dispose();
-  }
-
-  void _onTapDown(TapDownDetails details) {
-    _backgroundColor =
-        ColorTween(begin: _backgroundColor.value, end: _clickColor)
-            .animate(_clickController);
-    _clickController.forward();
-  }
-
-  void _onTapUp(TapUpDetails details) {
-    _clickController.reverse().then((value) {
-      _backgroundColor = ColorTween(begin: _defaultColor, end: _hoverColor)
-          .animate(_hoverController);
-    });
-  }
-
+class _LanguageSelectorBoxState extends State<LanguageSelectorBox> {
   @override
   Widget build(BuildContext context) {
-    return MouseRegion(
-      cursor: SystemMouseCursors.click,
-      onEnter: (event) => _hoverController.forward(),
-      onExit: (event) {
-        if (_hoverController.isCompleted || _hoverController.isAnimating) {
-          _hoverController.reverse();
-        }
-
-        if (_clickController.isCompleted || _clickController.isAnimating) {
-          _clickController.reverse().then((value) {
-            _backgroundColor =
-                ColorTween(begin: _defaultColor, end: _hoverColor)
-                    .animate(_hoverController);
-            _hoverController.reverse();
-          });
-        }
-      },
-      child: GestureDetector(
-        onTapDown: _onTapDown,
-        onTapUp: _onTapUp,
-        onTap: () {
-          Navigator.of(context).pop(); // close the bottom sheet
-
-          /* throw UnimplementedError(); // TODO: Implement ontap to show dialog */
-        },
-        child: AnimatedBuilder(
-          animation: Listenable.merge([_backgroundColor, _clickController]),
-          builder: (context, child) => SizedBox(
-            height: 40,
-            child: Container(
-              decoration: BoxDecoration(
-                color: _backgroundColor.value,
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: const Center(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(SimpleIcons.rust, color: Colors.black),
-                    SizedBox(
-                      width: 5,
-                    ),
-                    Text(
-                      'Rust (detected)',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
-                    SizedBox(
-                      width: 5,
-                    ),
-                    Icon(
-                      Icons.arrow_drop_down,
-                      color: Colors.black,
-                    ),
-                  ],
+    return SizedBox(
+      height: 40,
+      child: Button(
+          child: Center(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  SimpleIcons.rust,
+                  color: Colors.grey[850],
                 ),
-              ),
+                const SizedBox(
+                  width: 5,
+                ),
+                Text(
+                  'Rust (detected)',
+                  style: TextStyle(
+                    color: Colors.grey[850],
+                    fontSize: 16,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+                const SizedBox(
+                  width: 5,
+                ),
+                const Icon(
+                  Icons.arrow_drop_down,
+                  color: Colors.black,
+                ),
+              ],
             ),
           ),
-        ),
-      ),
+          onTap: () {
+            Navigator.of(context).pop();
+
+            // TODO: Implement ontap to show dialog
+          }),
     );
   }
 }
