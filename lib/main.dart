@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jspaste_mobile/components/button.dart';
+import 'package:jspaste_mobile/components/code_editor.dart';
 import 'package:jspaste_mobile/constants/logo_icons.dart';
 import 'package:jspaste_mobile/components/settings.dart';
 
@@ -17,9 +18,7 @@ class MainApp extends StatelessWidget {
           useMaterial3: true,
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.amber)),
       home: const Scaffold(
-        body: Center(
-          child: Placeholder(),
-        ),
+        body: CodeEditor(),
         bottomNavigationBar: JSPasteBottomBar(),
       ),
     );
